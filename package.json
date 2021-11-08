@@ -1,0 +1,15 @@
+{
+  "name": "interviewframework",
+  "version": "1.0.0",
+  "description": "This framework will be used for QA interviews",
+  "main": "index.js",
+  "scripts": {
+  "test":  "cypress run --spec 'cypress/integration/*.js'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^8.7.0",
+    "mocha": "^9.1.3"
+  }
+}
