@@ -1,5 +1,4 @@
-import SignInPage from '../pageObject/signUpPage';
- const URL = `${Cypress.env('app')}`;
+const URL = `${Cypress.env('app')}`;
 // const URL = "https://www.asos.com/"
 
 const signUp = (email, password) => {
