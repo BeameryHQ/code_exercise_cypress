@@ -4,7 +4,7 @@
   "description": "This framework will be used for QA interviews",
   "main": "index.js",
   "scripts": {
-  "test":  "cypress run --spec 'cypress/integration/*.js'"
+  "test":  "cypress run --spec 'cypress/integration/*.spec.js'"
   },
   "author": "",
   "license": "ISC",
