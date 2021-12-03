@@ -23,15 +23,16 @@ describe('homepage', function(){
 
     it('Sign Up successful', function(){
       cy.visit('https://www.asos.com/');  
-      //Fix the failures
+      //Fix the failures in signUp function in commands.js file
       cy.signUp('abc@mailinator.com', '1234ascdZX')
      
       // Add line number 30 and ask the candidate to repalce with something better (like line number 31)
+      // Discuss about different wait types with the candidate
       cy.wait(1000);
       // cy.get("id for sign up page header").should("not.be.visible");
       
       // add assertions to check the successful sign up
-      cy.get('id of the text element')
+      cy.get('<id of the text element>')
        .should('have.text', 'Successful register')
     });
 
@@ -40,7 +41,7 @@ describe('homepage', function(){
       //Once signup function is fixed, use non-unique email to register and ask candidate to find the issue and fix it
       cy.signUp('non-unique@email.com', '1234ascdZX')
 
-      cy.get('id of the text element')
+      cy.get('<id of the text element>')
        .should('have.text', 'Successful register')
     });
 

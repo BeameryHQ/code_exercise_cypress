@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('login', (email, password) => {
+Cypress.Commands.add('signUp', (email, password) => {
     cy.get('[data-st-field="id-register-email"]').type(email)
     cy.get('[data-st-field="id-register-firstName"]').type('John')
     cy.get('[data-st-field="id-register-lastName"]').type('Doe')
