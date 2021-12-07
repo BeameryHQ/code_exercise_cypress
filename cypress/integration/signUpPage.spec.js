@@ -1,24 +1,52 @@
-const URL = `${Cypress.env('app')}`;
-// const URL = "https://www.asos.com/"
+import faker from 'faker';
 
-const signUp = (email, password) => {
-  cy.get('[data-st-field="id-register-email"]').type(email)
-    cy.get('[data-st-field="id-register-firstName"]').type('John')
-    cy.get('[data-st-field="id-register-lastName"]').type('Doe')
-    cy.get('[data-st-field="id-register-password"]').type(password)
-    cy.get('#BirthDay').select('19').should('have.value','19');
+//const URL = `${Cypress.env('app')}`;
+// const URL = "https://www.asos.com/"
+const emailId=faker.internet.email();
+const password='A1234CD@E';
+
+const personalInfo = () => {
+    cy.get('#id_gender2').click();
+    cy.get('#customer_firstname').type('John')
+    cy.get('#customer_lastname').type('Doe')
+   // cy.get('#email').should('have.text',emailId);
+    cy.get('#passwd').type(password);
+    cy.get('#days').select('19').should('have.value','19');
     //it should fail here..
-    cy.get('#BirthMonth').select('February');
-    cy.get('#BirthYear').select('2000');
-    cy.get('#female');
-    cy.get('#register').submit()
+    cy.get('#months').select('February');
+    cy.get('#years').select('2000');
 };
 
+const addressInfo=()=>{
+  cy.get('#firstname').type('John');
+  cy.get('#lastname').type('Doe');
+  cy.get('#address1').type(faker.address.streetName());
+  cy.get('#city').type(faker.address.city());
+  cy.get('#id_state').select('Alabama');
+  cy.get('#postcode').type(faker.address.zipCode('01234'));
+  cy.get('#phone_mobile').type(faker.phone.phoneNumber('0123456789'));
+  cy.get('#alias').type(faker.address.streetAddress());
+  
+}
+const createAnAccount=()=>{ 
+  cy.get('#email_create').type(emailId);
+  cy.get('#SubmitCreate').click();
+}
+
 describe('Homepage', function(){
-    it('Sign Up successful', function(){
-      cy.visit('https://www.asos.com/');  
+    it.only('Sign Up successful', function(){
+      cy.visit('http://automationpractice.com/');  
+      cy.get('a').contains('Sign in').click();
+      createAnAccount();
+      personalInfo();
+      addressInfo();
+      cy.get('#submitAccount').click();
+      // cy.get('[data-testid="myAccountIcon"]')
+      // .should('have.attr', 'aria-checked', 'true');
+      
+    
       //Question: Fix the failures in signUp function in commands.js file
-      signUp('abc@mailinator.com', '1234ascdZX')
+      
      
       // Question: Add line number 30 and ask the candidate to replace with something better (like line number 31)
       // Question: Discuss about different wait types with the candidate
@@ -26,8 +54,8 @@ describe('Homepage', function(){
       // cy.get("id for sign up page header").should("not.be.visible");
       
       // Question:  Add assertions to check the successful sign up
-      cy.get('<id of the text element>')
-       .should('have.text', 'Successful register')
+      // cy.get('<id of the text element>')
+      //  .should('have.text', 'Successful register')
     });
 
     it('Sign Up successful', function(){
