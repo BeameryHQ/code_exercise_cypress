@@ -1,15 +1,12 @@
 import faker from 'faker';
 
-//const URL = `${Cypress.env('app')}`;
-// const URL = "https://www.asos.com/"
-
 const personalInfo = () => {
     const password='A1234CD@E';
     cy.get('#id_gender2').click();
     cy.get('#customer_firstname').type('John')
     cy.get('#customer_lastname').type('Doe')
     cy.get('#passwd').type(password);
-    cy.get('#days').select('19').should('have.value','19');
+    cy.get('#days').select('19')
     cy.get('#months').select('February');
     cy.get('#years').select('2000');
 };
@@ -35,10 +32,13 @@ const createAnAccount=(emailId)=>{
 
 describe('Homepage', function(){
     it('Sign Up successful', function(){
+      // Question: Best place to pass the base url in the code
       cy.visit('http://automationpractice.com/');  
+      // Question: What CSS selectors can be used instead of text
       cy.get('a').contains('Sign in').click();
       createAnAccount();
       personalInfo();
+      // Question: Add assertions for personal info
       addressInfo();
       cy.get('#submitAccount').click();
       // Question: Add line number 46 and ask the candidate to replace with something better (like line number 31)
@@ -46,11 +46,11 @@ describe('Homepage', function(){
       cy.wait(1000);
       // cy.get("id for sign up page header").should("not.be.visible");
       
-
       // Question:  Add assertions to check the successful sign up
       cy.get('h1.page-heading')
        .should('have.text', 'My account')
-  
+
+      // Question: If you can write this whole scenario in a better manner what would be your approach
     });
 
     it('Sign Up fails', function(){
